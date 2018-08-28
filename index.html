@@ -20,10 +20,10 @@
 				<input class="toggle-all" type="checkbox" ng-model="input">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list">
-				 	<li >
+				 	<li ng-repeat="value in todoList">
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="input">
-							<label>Buy a unicorn</label>
+							<label>{{value}}</label>
 							<button class="destroy"></button>
 						</div>
 						<input class="edit" value="Rule the web">
