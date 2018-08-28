@@ -1,6 +1,16 @@
-(function (window) {
-	'use strict';
+(function (angular) {
+	'use strict'
 
-	// Your starting point. Enjoy the ride!
+	/**
+	* todoApp Module
+	*
+	* Description
+	*/
+	// 定义模块、主控
+	angular.module('todoApp', []).controller('MianController', ['$scope', function($scope){
+		// 初始化 页面成员
+		$scope.input = ''
+		$scope.todoList = ['1','2','3']
+	}])
 
-})(window);
+})(angular);
