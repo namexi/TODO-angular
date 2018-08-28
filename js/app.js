@@ -14,6 +14,11 @@
 		// 初始化 成员行为
 		$scope.doen =($event) => {
 			//TODO: 按回车键添加到任务列表中 
+			if($event.keyCode === 13  && $scope.input) {
+				let todo = $scope.input
+				$scope.todoList.push(todo)
+				$scope.input = ''
+			}
 		}
 		$scope.dele =() => {
 			// TODO: 点击删除当前列表行
