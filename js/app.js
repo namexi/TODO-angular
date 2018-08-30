@@ -15,14 +15,14 @@
 		// { id : 2, text : 2, state : false},
 		// { id : 3, text : 3, state : false}
 		]
-		let idx = 0
+		$scope.idx = 0  // 计数功能
 		// 初始化 成员行为
 		$scope.doen = ($event) => {
 			
 			//TODO: 按回车键添加到任务列表中 
 			if($event.keyCode === 13  && $scope.input) {
-				idx++
-				let todos = {id:idx, text : $scope.input, state : false}
+				$scope.idx++
+				let todos = {id:$scope.idx, text : $scope.input, state : false}
 				//持久化
 				$scope.todoList.push(todos)
 				// 将数据添加到本地储存
@@ -33,12 +33,13 @@
 			}
 		}
 		// 读取本地储存数据
-			if (localStorage.pagecount) {
-				let todo = localStorage.getItem('pagecount')
-				todo = JSON.parse(todo)
-				todo.forEach(element => {
-					$scope.todoList.push(element)
-				})
+		if (localStorage.pagecount) {
+			let todo = localStorage.getItem('pagecount')
+			todo = JSON.parse(todo)
+			todo.forEach((element,index) => {
+				$scope.todoList.push(element)
+				$scope.idx = index + 1
+			})
 		}
 	 	$scope.dele = () => {
 		
