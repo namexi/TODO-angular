@@ -48,7 +48,9 @@
 			//this.innerHTML()
 			let idx = $scope.todoList.length
 			let dele = $scope.todoList.splice(idx-1,1)
-			
+			if (dele.length !== 0) {
+				$scope.idx--
+			}
 			localStorage.setItem('pagecount',JSON.stringify($scope.todoList))	
 		}
 		$scope.eidi = () => {
