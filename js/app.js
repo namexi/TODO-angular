@@ -41,10 +41,15 @@
 				$scope.idx = index + 1
 			})
 		}
-	 	$scope.dele = () => {
-		
-			// TODO: 点击删除当前列表行
+	 	$scope.dele = ($event) => {
 			
+			// TODO: 点击删除当前列表行
+			let btn = $event.target
+			//this.innerHTML()
+			let idx = $scope.todoList.length
+			let dele = $scope.todoList.splice(idx-1,1)
+			
+			localStorage.setItem('pagecount',JSON.stringify($scope.todoList))	
 		}
 		$scope.eidi = () => {
 			// TODO: 双击弹出input 文本框
