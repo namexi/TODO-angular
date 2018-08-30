@@ -20,7 +20,7 @@
 				<input class="toggle-all" type="checkbox">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list">
-				 	<li ng-repeat="value in todoList" ng-class="{completed:value.state}">
+				 	<li ng-repeat="value in todoList track by $index" ng-class="{completed:value.state}">
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="value.state">
 							<label>{{value.text}}</label>
