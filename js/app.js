@@ -39,7 +39,6 @@
 			todo = JSON.parse(todo)
 			todo.forEach((element,index) => {
 				$scope.todoList.push(element)
-				$scope.idx = index + 1
 			})
 		}
 	 	$scope.dele = (that) => {
@@ -57,6 +56,25 @@
 		$scope.save = () => {
 			// TODO: 数据保存完毕后恢复原样
 			$scope.editedTodo = 0
+		}
+		$scope.show = () => {
+			let folag = false	
+			$scope.todoList.some(element => {
+				if (element.state) {
+					folag = true
+				}  
+			})
+			return folag
+		}
+		$scope.clearCompleted = () =>{
+			let idx = []
+			$scope.todoList.forEach((element) => {
+				if(!element.state) {
+					idx.push(element)		 
+				}	
+			})
+			$scope.todoList = idx
+			localStorage.setItem('pagecount',JSON.stringify($scope.todoList))
 		}
 	}])
 

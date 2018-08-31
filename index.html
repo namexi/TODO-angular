@@ -49,7 +49,7 @@
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->
-				<button class="clear-completed">清空待办事项</button>
+				<button class="clear-completed" ng-show="show()" ng-click="clearCompleted()">清空已完成事项</button>
 			</footer>
 		</section>
 		<footer class="info">
