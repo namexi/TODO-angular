@@ -42,11 +42,12 @@
 				$scope.idx = index + 1
 			})
 		}
-	 	$scope.dele = () => {
+	 	$scope.dele = (that) => {
 			
 			// TODO: 点击删除当前列表行
-			let idx = $scope.todoList.length
-			let dele = $scope.todoList.splice(idx-1,1)
+			let id = $scope.todoList.indexOf(that)
+			console.log(id)
+			let dele = $scope.todoList.splice(id,1)
 			if (dele.length !== 0) {
 				$scope.idx--
 			}
@@ -54,11 +55,10 @@
 		}
 		$scope.eidi = (that) => {
 
-		// TODO: 双击弹出input 文本框			
-			//设置排他ID
-			$scope.editedTodo = that.id
+			// TODO: 双击弹出input 文本框	
+			$scope.editedTodo = that.id //设置排他ID
 		}
-
+		
 	}])
 
 })(angular)
