@@ -16,7 +16,8 @@
 		// { id : 3, text : 3, state : false}
 		]
 		$scope.idx = 0  // 计数功能
-		// 初始化 成员行为
+		$scope.editedTodo = 0 //排他思想的ID
+ 		// 初始化 成员行为
 		$scope.doen = ($event) => {
 			
 			//TODO: 按回车键添加到任务列表中 
@@ -41,11 +42,9 @@
 				$scope.idx = index + 1
 			})
 		}
-	 	$scope.dele = ($event) => {
+	 	$scope.dele = () => {
 			
 			// TODO: 点击删除当前列表行
-			let btn = $event.target
-			//this.innerHTML()
 			let idx = $scope.todoList.length
 			let dele = $scope.todoList.splice(idx-1,1)
 			if (dele.length !== 0) {
@@ -53,8 +52,11 @@
 			}
 			localStorage.setItem('pagecount',JSON.stringify($scope.todoList))	
 		}
-		$scope.eidi = () => {
-			// TODO: 双击弹出input 文本框
+		$scope.eidi = (that) => {
+
+		// TODO: 双击弹出input 文本框			
+			//设置排他ID
+			$scope.editedTodo = that.id
 		}
 
 	}])
