@@ -27,7 +27,7 @@
 							<button class="destroy" ng-click="dele(value)"></button>
 						</div>
 						<form ng-submit="save()">
-						<input class="edit" value="Rule the web" ng-model="value.text">
+						<input class="edit" value="Rule the web" ng-model="value.text" ng-blur="save()">
 						</form>
 					</li> 
 				</ul>
