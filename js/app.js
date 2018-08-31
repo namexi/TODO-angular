@@ -58,7 +58,10 @@
 			// TODO: 双击弹出input 文本框	
 			$scope.editedTodo = that.id //设置排他ID
 		}
-		
+		$scope.save = () => {
+			// TODO: 数据保存完毕后恢复原样
+			$scope.editedTodo = 0
+		}
 	}])
 
 })(angular)
