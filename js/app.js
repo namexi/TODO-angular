@@ -18,6 +18,8 @@
 		// { id : 3, text : 3, state : false}
 		]
 		$scope.editedTodo = 0 //排他思想的ID
+		$scope.checkAll
+
  		// 初始化 成员行为
 		$scope.doen = ($event) => {
 			
@@ -54,6 +56,7 @@
 			$scope.editedTodo = that.id //设置排他ID
 		}
 		$scope.save = () => {
+
 			// TODO: 数据保存完毕后恢复原样
 			$scope.editedTodo = 0
 		}
@@ -66,16 +69,27 @@
 			})
 			return folag
 		}
-		$scope.clearCompleted = () =>{
+		
+		$scope.clearCompleted = () => {
+			//TODO: 清空已完成事项
 			let idx = []
 			$scope.todoList.forEach((element) => {
 				if(!element.state) {
 					idx.push(element)		 
-				}	
+				}
 			})
 			$scope.todoList = idx
 			localStorage.setItem('pagecount',JSON.stringify($scope.todoList))
 		}
+		$scope.checkCompleted = () => {
+			
+			// TODO: 全选功能
+			$scope.todoList.forEach(element => {
+				element.state = !$scope.checkAll
+				if(element.state) idx++
+			})
+		}
+
 	}])
 
 })(angular)
