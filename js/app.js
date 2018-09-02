@@ -88,17 +88,8 @@
 			$scope.editedTodo = 0
 		}
 
-		$scope.show = () => {
-
-			// TODO: 显示清空按钮
-			let folag = false	
-			$scope.todoList.some(element => {
-				if (element.state) {
-					folag = true
-				}  
-			})
-			return folag
-		}
+		// TODO: 显示清空按钮
+		$scope.show = () =>  $scope.todoList.some(element => element.state)
 		
 		$scope.clearCompleted = () => {
 
