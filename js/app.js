@@ -9,7 +9,10 @@
 	function getStorage() {
 		return JSON.parse(localStorage.getItem('pagecount'))
 	}
-
+	//持久化到本地
+	function setStorage(data) {
+		localStorage.setItem('pagecount',JSON.stringify(data))
+	}
 	/**
 	* todoApp Module
 	*
@@ -28,17 +31,27 @@
 		]
 		$scope.editedTodo = 0 //排他思想的ID
 		$scope.checkAll
-		$scope.state = false
+		$scope.handover = {} // 设置切换值
+		$scope.location = $location // 将location对象暴露给$scope
+
 		// 读取本地储存数据
-		 if (localStorage.pagecount) {
+		if (localStorage.pagecount) {
 		 	let todo = getStorage()
-			// // 将本地数据给 todolist 成员
+			 // 将本地数据给 todolist 成员
 			 todo.forEach((element) => {
 			 	$scope.todoList.push(element)
 			})
 		 }
 	
  		// 初始化 成员行为
+ 		
+ 		$scope.click = (that) =>{
+
+ 			//TODO: 持久化选择状态
+			let idx = $scope.todoList.indexOf(that)
+			$scope.todoList[idx].state = that.state
+			setStorage($scope.todoList)
+		}
 		
 		$scope.doen = ($event) => {
 			
@@ -48,7 +61,7 @@
 				//持久化
 				$scope.todoList.push(todos)
 				// 将数据添加到本地储存
-				localStorage.setItem('pagecount',JSON.stringify($scope.todoList))
+				setStorage($scope.todoList)
 				//==> [{}]
 				
 				$scope.input = ''
@@ -60,7 +73,7 @@
 			// TODO: 点击删除当前列表行
 			let id = $scope.todoList.indexOf(that)
 			let dele = $scope.todoList.splice(id,1)
-			if (dele) localStorage.setItem('pagecount',JSON.stringify($scope.todoList))				
+			if (dele) setStorage($scope.todoList)				
 		}
 
 		$scope.eidi = (that) => {
@@ -97,7 +110,8 @@
 				}
 			})
 			$scope.todoList = idx
-			localStorage.setItem('pagecount',JSON.stringify($scope.todoList))
+			//持久化
+			setStorage($scope.todoList)
 		}
 
 		$scope.checkCompleted = () => {
@@ -108,9 +122,6 @@
 				//if(element.state) idx++
 			})
 		}
-
-		$scope.handover = {} // 设置切换值
-		$scope.location = $location // 将location对象暴露给$scope
 
 		//监听$scope中的location对象
 		$scope.$watch('location.hash()',function (newVal,old) {

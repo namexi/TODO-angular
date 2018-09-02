@@ -22,7 +22,7 @@
 				<ul class="todo-list">
 				 	<li ng-repeat="value in todoList | filter : handover track by $index" ng-class="{completed:value.state, editing:editedTodo === value.id}">
 						<div class="view">
-							<input class="toggle" type="checkbox" ng-model="value.state">
+							<input class="toggle" type="checkbox" ng-model="value.state" ng-change="click(value)">
 							<label ng-dblclick="eidi(value)">{{value.text}}</label>
 							<button class="destroy" ng-click="dele(value)"></button>
 						</div>
