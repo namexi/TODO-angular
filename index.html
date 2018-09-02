@@ -20,7 +20,7 @@
 				<input class="toggle-all" type="checkbox" ng-click="checkCompleted()" ng-model="checkAll" >
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list">
-				 	<li ng-repeat="value in todoList track by $index" ng-class="{completed:value.state, editing:editedTodo === value.id}">
+				 	<li ng-repeat="value in todoList | filter : handover track by $index" ng-class="{completed:value.state, editing:editedTodo === value.id}">
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="value.state">
 							<label ng-dblclick="eidi(value)">{{value.text}}</label>
@@ -39,13 +39,13 @@
 				<!-- Remove this if you don't implement routing -->
 				<ul class="filters">
 					<li>
-						<a class="selected" href="#/">全部</a>
+						<a ng-class="{selected : handover.state === undefined }" href="#/">全部</a>
 					</li>
 					<li>
-						<a href="#/active">未完成</a>
+						<a href="#/active" ng-class="{selected : handover.state === false }">未完成</a>
 					</li>
 					<li>
-						<a href="#/completed">已完成</a>
+						<a href="#/completed" ng-class="{selected : handover.state === true }">已完成</a>
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->

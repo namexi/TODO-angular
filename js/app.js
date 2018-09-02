@@ -9,7 +9,7 @@
 	* Description
 	*/
 	// 定义模块、主控
-	angular.module('todoApp', []).controller('MianController', ['$scope', function($scope){
+	angular.module('todoApp', []).controller('MianController', ['$scope','$location', function($scope,$location){
 		// 初始化 页面成员
 		$scope.input = ''
 		$scope.todoList = [
@@ -44,7 +44,7 @@
 			})
 		}
 	 	$scope.dele = (that) => {
-			
+		
 			// TODO: 点击删除当前列表行
 			let id = $scope.todoList.indexOf(that)
 			let dele = $scope.todoList.splice(id,1)
@@ -82,14 +82,31 @@
 			localStorage.setItem('pagecount',JSON.stringify($scope.todoList))
 		}
 		$scope.checkCompleted = () => {
-			
+
 			// TODO: 全选功能
 			$scope.todoList.forEach(element => {
 				element.state = !$scope.checkAll
-				if(element.state) idx++
+				//if(element.state) idx++
 			})
 		}
+		$scope.handover = {} // 设置切换值
+		$scope.location = $location // 将location对象暴露给$scope
+		//监听$scope中的location对象
+		$scope.$watch('location.hash()',function (newVal,old) {
 
+			// TODO: 完成 TAB 切换
+			switch (newVal) {
+				case '/active':
+					$scope.handover = { state : false }
+					break
+				case '/completed':
+				$scope.handover = { state : true }
+					break
+				default :
+					$scope.handover = {}
+					break
+			}
+		})
 	}])
 
 })(angular)
